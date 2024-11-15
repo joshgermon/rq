@@ -1,10 +1,10 @@
 # rq
 
-[!WARNING]
-This project is still in early development and not yet ready for production use. Please star the repository to follow along with updates.
-
-[![Go Report Card](https://goreportcard.com/badge/github.com/joshgermon/rq)](https://goreportcard.com/report/github.com/joshgermon/rq)
+[![Go Report Card](https://goreportcard.com/badge/github.com/joshgermon/rq)]
 [![License](https://img.shields.io/github/license/joshgermon/rq)]
+
+> [!WARNING]
+> This project is still in early development and not yet ready for production use. Please star the repository to follow along with updates.
 
 A streamlined CLI tool for testing APIs using OpenAPI/Swagger specifications. Edit and send API requests without leaving your terminal.
 
