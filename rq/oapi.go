@@ -46,7 +46,7 @@ func GetRequestBodyExample(apiSpec *openapi3.T, path string, method string) *str
 		for _, mediaType := range requestBody.Content {
 			// Check for a single example
 			if mediaType.Example != nil {
-				jsonData, err := json.Marshal(mediaType.Example)
+				jsonData, err := json.MarshalIndent(mediaType.Example, "", "  ")
 				if err != nil {
 					log.Printf("Error marshaling example to JSON: %v", err)
 					return nil
@@ -59,7 +59,7 @@ func GetRequestBodyExample(apiSpec *openapi3.T, path string, method string) *str
 			if mediaType.Examples != nil {
 				for _, exampleRef := range mediaType.Examples {
 					if exampleRef.Value != nil {
-						jsonData, err := json.Marshal(exampleRef.Value.Value)
+						jsonData, err := json.MarshalIndent(exampleRef.Value.Value, "", "  ")
 						if err != nil {
 							log.Printf("Error marshaling example to JSON: %v", err)
 							return nil
