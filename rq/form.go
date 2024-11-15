@@ -1,7 +1,6 @@
 package rq
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/charmbracelet/huh"
@@ -31,7 +30,6 @@ func CallForm(apiSpec *openapi3.T) {
           for k := range opts {
             keys = append(keys, k)
           }
-
           return huh.NewOptions(keys...)
         }, &endpoint),
     ),
@@ -42,9 +40,14 @@ func CallForm(apiSpec *openapi3.T) {
     log.Fatal(err)
   }
 
-  example := apiSpec.Paths.Find(endpoint).Operations()[method].RequestBody.Value.Content["application/json"].Schema.Value.Example
-  fmt.Printf("Example: %v\n", example)
+  // Fallback example JSON body for now
   body = "{\"foo\": \"bar\"}"
+
+  // Attempt to get an example body from the OpenAPI spec for the specified endpoint
+  example := GetRequestBodyExample(apiSpec, endpoint, method)
+  if example != nil {
+    body = *example
+  }
 
   // Create new form
   finalForm := huh.NewForm(
